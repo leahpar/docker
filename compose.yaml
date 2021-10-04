@@ -1,0 +1,121 @@
+version: '3.5'
+
+services:
+
+    mysql8:
+        image: mysql:8
+        container_name: mysql8
+        hostname: mysql8
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: null
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        ports:
+            - 3306:3306
+        cap_add:
+            - SYS_NICE  # CAP_SYS_NICE
+        volumes:
+            - /home/raphael/docker/mysql8/data:/var/lib/mysql
+            
+    mysql56:
+        image: mysql:5.6
+        container_name: mysql56
+        hostname: mysql56
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: null
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        ports:
+            - 3307:3306
+        volumes:
+            - /home/raphael/docker/mysql56/data:/var/lib/mysql
+#            - /home/raphael/docker/mysql56/conf:/etc/mysql
+            
+    phpmyadmin:
+        image: phpmyadmin
+        container_name: phpmyadmin
+        hostname: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        volumes:
+            - /home/raphael/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php    
+    
+    php8:
+        build: ./php8
+        container_name: php8
+        hostname: php8
+        user: 1000:1000
+        ports:
+            - 9000:9000
+            - 8010-8019:8010-8019
+        volumes:
+            - /home/raphael/docker/php8/conf:/usr/local/etc
+            - /home/raphael/projets:/var/www
+            - /home/raphael/docker/bashrc:/root/.bashrc:ro
+            - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+            
+    php73:
+        build: ./php73
+        container_name: php73
+        hostname: php73
+        user: 1000:1000
+        ports:
+            - 9073:9000
+            - 8000-8009:8000-8009
+        volumes:
+            - /home/raphael/docker/php73/conf:/usr/local/etc
+            - /home/raphael/projets:/var/www
+            - /home/raphael/docker/bashrc:/root/.bashrc:ro
+            - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+            
+    php74:
+        build: ./php74
+        container_name: php74
+        hostname: php74
+        user: 1000:1000
+        ports:
+            - 9074:9000
+            - 8020-8029:8020-8029
+        volumes:
+            - /home/raphael/docker/php74/conf:/usr/local/etc
+            - /home/raphael/projets:/var/www
+            - /home/raphael/docker/bashrc:/root/.bashrc:ro
+            - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+            
+    php56:
+        build: ./php56
+        container_name: php56
+        hostname: php56
+        user: 1000:1000
+        ports:
+            - 9056:9000
+            - 8030-8039:8030-8039
+        volumes:
+#            - /home/raphael/docker/php56/conf:/usr/local/etc
+            - /home/raphael/projets:/var/www
+            - /home/raphael/docker/bashrc:/root/.bashrc:ro
+            - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+            
+    apache:
+        image: httpd:2.4
+        container_name: apache
+        hostname: apache
+        ports:
+            - 80:80
+        expose:
+            - 80
+        volumes:
+            - /home/raphael/docker/apache/conf:/usr/local/apache2/conf
+            - /home/raphael/projets:/var/www
+            
