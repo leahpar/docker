@@ -116,6 +116,11 @@ services:
         expose:
             - 80
         volumes:
-            - /home/raphael/docker/apache/conf:/usr/local/apache2/conf
+            # config httpd.conf :
+            # LoadModule proxy_module modules/mod_proxy.so
+            # LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+            # Include /usr/local/apache2/conf/sites/*.conf
+            - /home/raphael/docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+            - /home/raphael/docker/apache/sites:/usr/local/apache2/conf/sites
             - /home/raphael/projets:/var/www
             
