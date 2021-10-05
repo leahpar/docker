@@ -17,6 +17,7 @@ services:
             - SYS_NICE  # CAP_SYS_NICE
         volumes:
             - /home/raphael/docker/mysql8/data:/var/lib/mysql
+            #- /home/raphael/docker/mysql8/conf:/etc/mysql
             
     mysql56:
         image: mysql:5.6
@@ -31,7 +32,7 @@ services:
             - 3307:3306
         volumes:
             - /home/raphael/docker/mysql56/data:/var/lib/mysql
-#            - /home/raphael/docker/mysql56/conf:/etc/mysql
+            #- /home/raphael/docker/mysql56/conf:/etc/mysql
             
     phpmyadmin:
         image: phpmyadmin
@@ -52,7 +53,8 @@ services:
             - 9000:9000
             - 8010-8019:8010-8019
         volumes:
-            - /home/raphael/docker/php8/conf:/usr/local/etc
+            - /home/raphael/docker/php78/php.ini:/usr/local/etc/php/php.ini
+            - /home/raphael/docker/php78/conf.d:/usr/local/etc/php/conf.d
             - /home/raphael/projets:/var/www
             - /home/raphael/docker/bashrc:/root/.bashrc:ro
             - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
@@ -68,7 +70,8 @@ services:
             - 9073:9000
             - 8000-8009:8000-8009
         volumes:
-            - /home/raphael/docker/php73/conf:/usr/local/etc
+            - /home/raphael/docker/php73/php.ini:/usr/local/etc/php/php.ini
+            - /home/raphael/docker/php73/conf.d:/usr/local/etc/php/conf.d
             - /home/raphael/projets:/var/www
             - /home/raphael/docker/bashrc:/root/.bashrc:ro
             - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
@@ -84,7 +87,8 @@ services:
             - 9074:9000
             - 8020-8029:8020-8029
         volumes:
-            - /home/raphael/docker/php74/conf:/usr/local/etc
+            - /home/raphael/docker/php74/php.ini:/usr/local/etc/php/php.ini
+            - /home/raphael/docker/php74/conf.d:/usr/local/etc/php/conf.d
             - /home/raphael/projets:/var/www
             - /home/raphael/docker/bashrc:/root/.bashrc:ro
             - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
@@ -100,10 +104,11 @@ services:
             - 9056:9000
             - 8030-8039:8030-8039
         volumes:
-#            - /home/raphael/docker/php56/conf:/usr/local/etc
+            #- /home/raphael/docker/php56/php.ini:/usr/local/etc/php/php.ini
+            #- /home/raphael/docker/php56/conf.d:/usr/local/etc/php/conf.d
             - /home/raphael/projets:/var/www
-            - /home/raphael/docker/bashrc:/root/.bashrc:ro
-            - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
+            #- /home/raphael/docker/bashrc:/root/.bashrc:ro
+            #- /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
             
