@@ -28,7 +28,11 @@ RUN apt-get install -y libicu-dev \
 RUN apt-get install -y \
         libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
   && docker-php-ext-install gd
-  
+
+
+#Install xdebug
+#RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 # NODE
 #RUN apt-get install -y \
 #    software-properties-common \

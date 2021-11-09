@@ -53,8 +53,8 @@ services:
             - 9000:9000
             - 8010-8019:8010-8019
         volumes:
-            - /home/raphael/docker/php78/php.ini:/usr/local/etc/php/php.ini
-            - /home/raphael/docker/php78/conf.d:/usr/local/etc/php/conf.d
+            - /home/raphael/docker/php8/php.ini:/usr/local/etc/php/php.ini
+            - /home/raphael/docker/php8/conf.d:/usr/local/etc/php/conf.d
             - /home/raphael/projets:/var/www
             - /home/raphael/docker/bashrc:/root/.bashrc:ro
             - /home/raphael/docker/bashrc:/home/raphael/.bashrc:ro

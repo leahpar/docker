@@ -20,6 +20,10 @@ RUN apt-get install -y \
   
 RUN docker-php-ext-install mbstring
 
+RUN apt-get install -y \
+        libxml2-dev \
+ && docker-php-ext-install xml
+
 RUN apt-get install -y libicu-dev \
   && apt-get install -y locales locales-all \
   && docker-php-ext-install intl
